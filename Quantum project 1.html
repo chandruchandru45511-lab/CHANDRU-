@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;900&amp;family=Inconsolata:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00626e",
+                        "surface-container-low": "#1a1c20",
+                        "on-secondary": "#00277f",
+                        "outline-variant": "#3b494c",
+                        "on-tertiary-container": "#775200",
+                        "primary-fixed": "#9cf0ff",
+                        "surface-tint": "#00daf3",
+                        "surface-container": "#1e2024",
+                        "primary-fixed-dim": "#00daf3",
+                        "on-primary-fixed-variant": "#004f58",
+                        "inverse-primary": "#006875",
+                        "secondary-fixed": "#dce1ff",
+                        "surface-container-highest": "#333539",
+                        "on-background": "#e2e2e8",
+                        "inverse-on-surface": "#2f3035",
+                        "on-secondary-fixed-variant": "#003ab2",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#604100",
+                        "secondary-container": "#0056fd",
+                        "on-secondary-container": "#e4e7ff",
+                        "surface-container-lowest": "#0c0e12",
+                        "secondary": "#b6c4ff",
+                        "on-primary": "#00363d",
+                        "surface-variant": "#333539",
+                        "on-surface-variant": "#bac9cc",
+                        "on-secondary-fixed": "#001550",
+                        "on-surface": "#e2e2e8",
+                        "background": "#111318",
+                        "surface-bright": "#37393e",
+                        "surface-container-high": "#282a2e",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#001f24",
+                        "tertiary-fixed-dim": "#ffba38",
+                        "outline": "#849396",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed": "#281900",
+                        "tertiary-fixed": "#ffdeac",
+                        "surface": "#111318",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary": "#ffe9cd",
+                        "surface-dim": "#111318",
+                        "primary-container": "#00e5ff",
+                        "primary": "#c3f5ff",
+                        "on-tertiary": "#432c00",
+                        "tertiary-container": "#ffc769"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"],
+                        "mono": ["Inconsolata"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .quantum-grid {
+            background-image:
+                linear-gradient(to right, rgba(59, 73, 76, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 73, 76, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glow-cyan {
+            filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+        }
+
+        .glow-amber {
+            filter: drop-shadow(0 0 8px rgba(255, 186, 56, 0.6));
+        }
+
+        .glow-red {
+            filter: drop-shadow(0 0 8px rgba(255, 180, 171, 0.6));
+        }
+
+        .glass-panel {
+            background: rgba(30, 32, 36, 0.6);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <!-- SideNavBar (from JSON) -->
+    <aside
+        class="flex flex-col h-screen fixed left-0 top-0 overflow-y-auto h-full w-64 border-r border-[#3b494c]/20 bg-[#1e2024] font-['Space_Grotesk'] tracking-tight shadow-[0px_24px_48px_-12px_rgba(0,218,243,0.08)] z-[60]">
+        <div class="p-6">
+            <div class="text-xl font-bold tracking-widest text-[#c3f5ff] uppercase">QUANTUM_SEC</div>
+            <div class="text-[10px] text-on-surface-variant tracking-[0.2em] mt-1 opacity-70">Protocol v4.2</div>
+        </div>
+        <nav class="flex-1 mt-4">
+            <div class="px-3 space-y-1">
+                <a class="flex items-center px-4 py-3 text-[#bac9cc] hover:text-[#e2e2e8] hover:bg-[#282a2e] transition-all duration-300 rounded-sm group"
+                    href="#">
+                    <span class="material-symbols-outlined mr-3 text-lg" data-icon="dashboard">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+                <a class="flex items-center px-4 py-3 text-[#bac9cc] hover:text-[#e2e2e8] hover:bg-[#282a2e] transition-all duration-300 rounded-sm group"
+                    href="#">
+                    <span class="material-symbols-outlined mr-3 text-lg" data-icon="memory">memory</span>
+                    <span class="text-sm font-medium">QKD Console</span>
+                </a>
+                <a class="flex items-center px-4 py-3 text-[#bac9cc] hover:text-[#e2e2e8] hover:bg-[#282a2e] transition-all duration-300 rounded-sm group"
+                    href="#">
+                    <span class="material-symbols-outlined mr-3 text-lg"
+                        data-icon="enhanced_encryption">enhanced_encryption</span>
+                    <span class="text-sm font-medium">Vault</span>
+                </a>
+                <!-- Active Item: Topology -->
+                <a class="flex items-center px-4 py-3 text-[#00E5FF] bg-[#111318] border-l-2 border-[#00E5FF] font-bold transition-all duration-300 rounded-sm"
+                    href="#">
+                    <span class="material-symbols-outlined mr-3 text-lg" data-icon="hub"
+                        style="font-variation-settings: 'FILL' 1;">hub</span>
+                    <span class="text-sm">Topology</span>
+                </a>
+                <a class="flex items-center px-4 py-3 text-[#bac9cc] hover:text-[#e2e2e8] hover:bg-[#282a2e] transition-all duration-300 rounded-sm group"
+                    href="#">
+                    <span class="material-symbols-outlined mr-3 text-lg" data-icon="settings">settings</span>
+                    <span class="text-sm font-medium">Settings</span>
+                </a>
+            </div>
+        </nav>
+        <div class="p-6 mt-auto">
+            <button
+                class="w-full bg-[#111318] border border-[#00E5FF]/30 text-[#00E5FF] py-3 rounded-sm text-xs font-bold tracking-widest hover:bg-[#00E5FF] hover:text-[#001f24] transition-all duration-300 flex items-center justify-center gap-2 uppercase">
+                <span class="material-symbols-outlined text-sm" data-icon="sync">sync</span>
+                INITIATE_SYNC
+            </button>
+            <div class="mt-6 flex items-center gap-3 px-2">
+                <div
+                    class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden">
+                    <img alt="System Administrator Avatar"
+                        data-alt="Close up professional portrait of a tech administrator in a dark room with blue glowing screens reflected in spectacles"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxFC5p6yqS8SRAdP08QdcNE8XiIq6vIujASu5GBnRoQ1QIpy6k5vHDCRstK8lw21_cEwBmr4khZCE8H15vWYTMfgYeuxJAjn-kfqUczf7HnKdveK4SxNjgG4u67JJqBMbSQSkP84K9GWDStXMIdUoq-bBsP_iBlYtxwdk6q8CjzNUvxHUebkcUKQzCdEzt4quu8C5syk-BmoUjI9vCJROj0hT0uU7uJPxMinXedSl7QR2Ffym8Y5JrS9el8ceB2JbFteSNgGc-H3IV" />
+                </div>
+                <div class="overflow-hidden">
+                    <p class="text-xs font-bold text-on-surface truncate">ADMIN_01</p>
+                    <p class="text-[10px] text-on-surface-variant truncate">LEVEL_4_AUTH</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- TopAppBar (from JSON) -->
+    <header
+        class="flex items-center justify-between px-6 sticky top-0 z-50 ml-64 w-[calc(100%-16rem)] h-16 border-b border-[#3b494c]/20 bg-[#111318]/60 backdrop-blur-md">
+        <div class="flex items-center gap-4">
+            <span class="text-lg font-black text-[#00E5FF] tracking-tighter">OBSIDIAN_VOID</span>
+            <div class="h-4 w-px bg-outline-variant mx-2"></div>
+            <span class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#bac9cc]">Topology Manager</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="relative group hidden lg:block">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm"
+                    data-icon="search">search</span>
+                <input
+                    class="bg-surface-container-lowest border-none border-b-2 border-outline-variant focus:border-[#00E5FF] focus:ring-0 text-xs py-2 pl-10 pr-4 w-64 font-mono transition-all duration-300"
+                    placeholder="SEARCH_NODE..." type="text" />
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="text-[#bac9cc] hover:text-[#00E5FF] transition-colors relative">
+                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                    <span class="absolute top-0 right-0 w-1.5 h-1.5 bg-primary-container rounded-full"></span>
+                </button>
+                <button class="text-[#bac9cc] hover:text-[#00E5FF] transition-colors">
+                    <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                </button>
+                <button class="text-[#bac9cc] hover:text-[#00E5FF] transition-colors">
+                    <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 p-0 relative h-[calc(100vh-4rem)] overflow-hidden quantum-grid">
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-tertiary/5 blur-[100px] rounded-full"></div>
+        </div>
+        <!-- Node Map Overlay -->
+        <div class="absolute inset-0 p-8 flex items-center justify-center">
+            <div class="relative w-full h-full max-w-5xl max-h-[600px]">
+                <!-- Quantum Connections (Lines) -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 1000 600">
+                    <!-- HUB_ALPHA to NODE_04 (Cyan - 100%) -->
+                    <line class="glow-cyan opacity-80" stroke="#00E5FF" stroke-dasharray="8 4" stroke-width="2" x1="500"
+                        x2="250" y1="300" y2="150"></line>
+                    <!-- HUB_ALPHA to SATELLITE_Q1 (Cyan - 100%) -->
+                    <line class="glow-cyan opacity-80" stroke="#00E5FF" stroke-dasharray="8 4" stroke-width="2" x1="500"
+                        x2="750" y1="300" y2="150"></line>
+                    <!-- HUB_ALPHA to NODE_07 (Amber - Degraded) -->
+                    <line class="glow-amber opacity-80" stroke="#ffba38" stroke-dasharray="4 4" stroke-width="2"
+                        x1="500" x2="500" y1="300" y2="500"></line>
+                    <!-- NODE_04 to NODE_02 (Red - Offline) -->
+                    <line class="glow-red opacity-40" stroke="#ffb4ab" stroke-dasharray="2 2" stroke-width="1" x1="250"
+                        x2="100" y1="150" y2="350"></line>
+                    <!-- HUB_ALPHA to SEC_01 (Cyan - 100%) -->
+                    <line class="glow-cyan opacity-80" stroke="#00E5FF" stroke-dasharray="8 4" stroke-width="2" x1="500"
+                        x2="850" y1="300" y2="400"></line>
+                </svg>
+                <!-- Nodes -->
+                <!-- HUB_ALPHA (Center) -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
+                    <div class="relative">
+                        <div
+                            class="absolute -inset-4 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div
+                            class="w-16 h-16 bg-surface-container-high border-2 border-[#00E5FF] rounded-lg flex items-center justify-center cursor-pointer shadow-lg z-10 relative glow-cyan">
+                            <span class="material-symbols-outlined text-primary-container text-3xl"
+                                data-icon="settings_input_antenna">settings_input_antenna</span>
+                        </div>
+                        <div
+                            class="absolute top-20 left-1/2 -translate-x-1/2 bg-[#111318]/80 px-3 py-1 border border-outline-variant rounded-sm whitespace-nowrap">
+                            <span
+                                class="text-[10px] font-mono font-bold tracking-widest text-[#00E5FF]">HUB_ALPHA</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- NODE_04 (Top Left) -->
+                <div class="absolute left-[20%] top-[20%] group">
+                    <div class="relative">
+                        <div
+                            class="w-12 h-12 bg-surface-container border-2 border-[#00E5FF] rounded-sm flex items-center justify-center cursor-pointer glow-cyan">
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="memory">memory</span>
+                        </div>
+                        <div
+                            class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#111318]/80 px-2 py-0.5 border border-outline-variant rounded-sm whitespace-nowrap">
+                            <span class="text-[9px] font-mono text-on-surface-variant">NODE_04</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- SATELLITE_Q1 (Top Right) -->
+                <div class="absolute left-[70%] top-[20%] group">
+                    <div class="relative">
+                        <div
+                            class="w-12 h-12 bg-surface-container border-2 border-[#00E5FF] rounded-sm flex items-center justify-center cursor-pointer glow-cyan">
+                            <span class="material-symbols-outlined text-primary text-xl"
+                                data-icon="satellite_alt">satellite_alt</span>
+                        </div>
+                        <div
+                            class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#111318]/80 px-2 py-0.5 border border-outline-variant rounded-sm whitespace-nowrap">
+                            <span class="text-[9px] font-mono text-on-surface-variant">SATELLITE_Q1</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- NODE_07 (Bottom) -->
+                <div class="absolute left-[45%] top-[78%] group">
+                    <div class="relative">
+                        <div
+                            class="w-12 h-12 bg-surface-container border-2 border-[#ffba38] rounded-sm flex items-center justify-center cursor-pointer glow-amber">
+                            <span class="material-symbols-outlined text-tertiary-fixed-dim text-xl"
+                                data-icon="dns">dns</span>
+                        </div>
+                        <div
+                            class="absolute top-16 left-1/2 -translate-x-1/2 bg-[#111318]/80 px-2 py-0.5 border border-outline-variant rounded-sm whitespace-nowrap">
+                            <span class="text-[9px] font-mono text-on-surface-variant">NODE_07</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- NODE_02 (Far Left) - Offline -->
+                <div class="absolute left-[5%] top-[55%] opacity-60">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 bg-surface-container-low border-2 border-[#ffb4ab] rounded-sm flex items-center justify-center cursor-pointer">
+                            <span class="material-symbols-outlined text-error text-lg"
+                                data-icon="cloud_off">cloud_off</span>
+                        </div>
+                        <div
+                            class="absolute top-12 left-1/2 -translate-x-1/2 bg-[#111318]/80 px-2 py-0.5 border border-outline-variant rounded-sm whitespace-nowrap">
+                            <span class="text-[9px] font-mono text-on-error">NODE_02_OFFLINE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Selected Node Panel (Side Overlay) -->
+        <section
+            class="absolute right-6 top-6 bottom-6 w-80 glass-panel border border-outline-variant/30 rounded-lg p-6 shadow-2xl flex flex-col z-40">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-primary-container/10 border border-primary-container rounded flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary-container"
+                            data-icon="verified_user">verified_user</span>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-primary tracking-widest font-headline">HUB_ALPHA</h2>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Primary Control Node
+                        </p>
+                    </div>
+                </div>
+                <span class="w-2 h-2 bg-primary-container rounded-full animate-pulse shadow-[0_0_8px_#00e5ff]"></span>
+            </div>
+            <div class="space-y-6 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Metadata -->
+                <div class="space-y-4">
+                    <div>
+                        <p
+                            class="text-[10px] font-headline font-bold text-on-surface-variant tracking-widest uppercase mb-1">
+                            Network Identity</p>
+                        <div class="bg-surface-container-lowest p-3 border-l-2 border-primary">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-[10px] text-on-surface-variant">IP_ADDRESS</span>
+                                <span class="text-[10px] font-mono text-on-surface">192.168.0.254</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-[10px] text-on-surface-variant">HARDWARE_ID</span>
+                                <span class="text-[10px] font-mono text-on-surface">Q-CORE-X900</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p
+                            class="text-[10px] font-headline font-bold text-on-surface-variant tracking-widest uppercase mb-1">
+                            Quantum Protocol</p>
+                        <div class="bg-surface-container-lowest p-3 border-l-2 border-primary">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-[10px] text-on-surface-variant">ALGORITHM</span>
+                                <span class="text-[10px] font-mono font-bold text-primary-container">BB84_V2.0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-[10px] text-on-surface-variant">ENTROPY_LVL</span>
+                                <span class="text-[10px] font-mono text-on-surface">99.98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p
+                            class="text-[10px] font-headline font-bold text-on-surface-variant tracking-widest uppercase mb-2">
+                            Active Links (4)</p>
+                        <div class="space-y-2">
+                            <div
+                                class="flex items-center gap-3 bg-surface-container p-2 rounded-sm border border-outline-variant/10">
+                                <div class="w-1.5 h-1.5 bg-[#00E5FF] rounded-full"></div>
+                                <span class="text-[10px] flex-1">SATELLITE_Q1</span>
+                                <span class="text-[9px] font-mono text-primary-container">SECURE</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 bg-surface-container p-2 rounded-sm border border-outline-variant/10">
+                                <div class="w-1.5 h-1.5 bg-[#00E5FF] rounded-full"></div>
+                                <span class="text-[10px] flex-1">NODE_04</span>
+                                <span class="text-[9px] font-mono text-primary-container">SECURE</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 bg-surface-container p-2 rounded-sm border border-outline-variant/10">
+                                <div class="w-1.5 h-1.5 bg-[#ffba38] rounded-full"></div>
+                                <span class="text-[10px] flex-1">NODE_07</span>
+                                <span class="text-[9px] font-mono text-tertiary-fixed-dim">DEGRADED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-outline-variant/20">
+                <button
+                    class="w-full bg-primary-fixed-dim text-on-primary-fixed font-bold text-[10px] tracking-widest py-3 rounded-sm flex items-center justify-center gap-2 uppercase hover:shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-all">
+                    <span class="material-symbols-outlined text-sm" data-icon="lock_reset">lock_reset</span>
+                    ROTATE_QUANTUM_KEYS
+                </button>
+            </div>
+        </section>
+        <!-- Legend (Bottom Left) -->
+        <div class="absolute left-6 bottom-6 glass-panel border border-outline-variant/30 rounded px-4 py-3 z-30">
+            <h4 class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Link Quality Index
+            </h4>
+            <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-0.5 bg-[#00E5FF] glow-cyan"></div>
+                    <span class="text-[10px] font-medium">100% QUANTUM FIDELITY</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-0.5 bg-[#ffba38] glow-amber"></div>
+                    <span class="text-[10px] font-medium">DEGRADED (RETRY REQ)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-0.5 bg-[#ffb4ab] glow-red opacity-60"></div>
+                    <span class="text-[10px] font-medium">LINK TERMINATED</span>
+                </div>
+            </div>
+        </div>
+        <!-- Global Status Bar (Bottom Center) -->
+        <div
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 glass-panel border border-outline-variant/30 rounded-full px-6 py-2 flex items-center gap-8 z-30">
+            <div class="flex items-center gap-2">
+                <span
+                    class="text-[9px] text-on-surface-variant uppercase font-bold tracking-widest">Active_Nodes:</span>
+                <span class="text-xs font-mono text-primary-container">12/14</span>
+            </div>
+            <div class="w-px h-4 bg-outline-variant"></div>
+            <div class="flex items-center gap-2">
+                <span
+                    class="text-[9px] text-on-surface-variant uppercase font-bold tracking-widest">Global_Entropy:</span>
+                <span class="text-xs font-mono text-primary-container">0.0004%</span>
+            </div>
+            <div class="w-px h-4 bg-outline-variant"></div>
+            <div class="flex items-center gap-2">
+                <span class="text-[9px] text-on-surface-variant uppercase font-bold tracking-widest">Uptime:</span>
+                <span class="text-xs font-mono text-on-surface">342:12:08</span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1c2026",
+                        "outline": "#849396",
+                        "surface-bright": "#353940",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#00daf3",
+                        "secondary": "#bac8dc",
+                        "on-secondary-fixed": "#0f1c2c",
+                        "surface": "#10141a",
+                        "error-container": "#93000a",
+                        "primary": "#c3f5ff",
+                        "on-primary-container": "#00626e",
+                        "primary-fixed": "#9cf0ff",
+                        "on-secondary": "#243141",
+                        "on-surface-variant": "#bac9cc",
+                        "surface-dim": "#10141a",
+                        "outline-variant": "#3b494c",
+                        "inverse-on-surface": "#2d3137",
+                        "on-tertiary-fixed-variant": "#454745",
+                        "on-error": "#690005",
+                        "tertiary-container": "#d0d1cd",
+                        "on-tertiary": "#2f312e",
+                        "on-secondary-fixed-variant": "#3a4859",
+                        "surface-variant": "#31353c",
+                        "secondary-fixed-dim": "#bac8dc",
+                        "on-primary": "#00363d",
+                        "tertiary-fixed-dim": "#c6c7c3",
+                        "inverse-primary": "#006875",
+                        "on-surface": "#dfe2eb",
+                        "tertiary": "#ecede9",
+                        "on-tertiary-container": "#575a57",
+                        "primary-container": "#00e5ff",
+                        "background": "#10141a",
+                        "surface-container-lowest": "#0a0e14",
+                        "on-primary-fixed": "#001f24",
+                        "surface-container-high": "#262a31",
+                        "secondary-fixed": "#d6e4f9",
+                        "on-background": "#dfe2eb",
+                        "primary-fixed-dim": "#00daf3",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#3a4859",
+                        "surface-container-highest": "#31353c",
+                        "inverse-surface": "#dfe2eb",
+                        "surface-container-low": "#181c22",
+                        "on-tertiary-fixed": "#1a1c1a",
+                        "on-primary-fixed-variant": "#004f58",
+                        "tertiary-fixed": "#e2e3df",
+                        "on-secondary-container": "#a8b6ca"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .quantum-glow {
+            box-shadow: 0 0 24px rgba(0, 229, 255, 0.1);
+        }
+
+        .glass-panel {
+            background: rgba(49, 53, 60, 0.4);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(195, 245, 255, 0.1);
+            border-left: 1px solid rgba(195, 245, 255, 0.1);
+        }
+
+        .scanline {
+            background: linear-gradient(to bottom, transparent, #00e5ff, transparent);
+            height: 100%;
+            width: 2px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.3;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Top Navigation -->
+    <header
+        class="bg-[#10141a] dark:bg-[#10141a] flex justify-between items-center px-6 py-4 w-full docked full-width top-0 shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-50">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[#00E5FF] text-2xl" data-icon="security">security</span>
+            <h1
+                class="text-xl font-headline font-bold tracking-[0.2em] text-[#00E5FF] drop-shadow-[0_0_8px_rgba(0,229,255,0.4)] uppercase">
+                QUANTUM_VAULT</h1>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <nav class="flex gap-6">
+                <a class="font-headline text-[12px] tracking-[0.15em] text-[#bac9cc] hover:text-[#c3f5ff] transition-colors uppercase"
+                    href="#">DASHBOARD</a>
+                <a class="font-headline text-[12px] tracking-[0.15em] text-[#c3f5ff] transition-colors uppercase"
+                    href="#">DECRYPT</a>
+                <a class="font-headline text-[12px] tracking-[0.15em] text-[#bac9cc] hover:text-[#c3f5ff] transition-colors uppercase"
+                    href="#">VAULT</a>
+                <a class="font-headline text-[12px] tracking-[0.15em] text-[#bac9cc] hover:text-[#c3f5ff] transition-colors uppercase"
+                    href="#">SYSTEM</a>
+            </nav>
+            <div
+                class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                    data-alt="High-contrast portrait of a cyber security specialist in a dimly lit tech environment with blue ambient light"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzuT2qOVnHPR5p9jUbHbHmIS1avrvq1Mqz7gltkrlXp4_0Sa1yXK-ZjkqeDYs8Q_pVpLIK628SUO70bsjYkQFRBFWc4DpnK8uhIU-Jg4io1cp8BijVSiTAyDXM_rKAVWT4n9KqN2eROW0kmOf2v4LvxSV6tlp2SyfsSCK2oFu99Q0wPXfe3GHVsgFx-c6sDQmcOIg35urInvN12H2yoYfpi7jujCg2jL7vRGie3-QvgslK6HsAcO8PGqwL4tQdbxk3GbyEc6LjmO8" />
+            </div>
+        </div>
+    </header>
+    <main class="min-h-screen pt-24 pb-32 px-4 md:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Column: Input Controls -->
+        <section class="lg:col-span-7 space-y-8">
+            <div class="space-y-2">
+                <div class="flex items-baseline gap-4">
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tighter uppercase">
+                        DECRYPT_STREAM</h2>
+                    <span
+                        class="font-label text-primary-container text-xs tracking-widest px-2 py-1 bg-primary-container/10 border border-primary-container/20">LIVE_PROTOCOL_V4</span>
+                </div>
+                <p class="text-on-surface-variant body-md max-w-xl">Feed raw ciphertext into the quantum core. Select
+                    the appropriate lattice-based key to initiate the observer-effect decryption sequence.</p>
+            </div>
+            <!-- Input Area -->
+            <div class="glass-panel p-6 rounded-lg relative overflow-hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-label text-xs tracking-widest text-primary-container flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+                        INPUT_CIPHERTEXT
+                    </span>
+                    <button
+                        class="flex items-center gap-2 text-xs font-label text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-sm" data-icon="upload_file">upload_file</span>
+                        UPLOAD_ARCHIVE
+                    </button>
+                </div>
+                <div class="relative group">
+                    <textarea
+                        class="w-full h-64 bg-surface-container-lowest border-none focus:ring-0 text-primary-fixed font-mono text-sm p-4 rounded leading-relaxed placeholder:text-outline-variant/50"
+                        placeholder="Paste hexadecimal or base64 ciphertext stream here..."></textarea>
+                    <div class="absolute bottom-4 right-4 flex gap-2">
+                        <span class="text-[10px] font-label text-outline-variant uppercase">Line: 1</span>
+                        <span class="text-[10px] font-label text-outline-variant uppercase">Entropy: 7.84</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Selector & Action -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <label
+                        class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase ml-1">Quantum_Key_Authority</label>
+                    <div class="relative">
+                        <select
+                            class="w-full bg-surface-container-high border-none text-on-surface font-label text-sm px-4 py-4 rounded cursor-pointer appearance-none focus:ring-2 focus:ring-primary-container/20">
+                            <option>CRYPTO_KEY_LATTICE_091</option>
+                            <option>CRYPTO_KEY_SHOR_256</option>
+                            <option>CRYPTO_KEY_TEMPEST_8</option>
+                            <option>IDENTITY_MATRIX_ALPHA</option>
+                        </select>
+                        <span
+                            class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant"
+                            data-icon="expand_more">expand_more</span>
+                    </div>
+                </div>
+                <div class="flex items-end">
+                    <button
+                        class="w-full h-[52px] bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary-fixed font-headline font-bold tracking-widest flex items-center justify-center gap-3 quantum-glow hover:scale-[1.02] active:scale-95 transition-all uppercase rounded">
+                        <span class="material-symbols-outlined" data-icon="vpn_key">vpn_key</span>
+                        EXECUTE_DECRYPT
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Right Column: Status & Real-time Visualization -->
+        <aside class="lg:col-span-5 space-y-6">
+            <div class="bg-surface-container-low p-6 rounded-lg space-y-6 border-l-2 border-primary-container/30">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface tracking-tight">SYSTEM_STATUS</h3>
+                        <p class="text-[10px] font-label text-primary-container tracking-widest uppercase">
+                            Encryption_Node: Active</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-container animate-pulse" data-icon="lens"
+                        style="font-variation-settings: 'FILL' 1;">lens</span>
+                </div>
+                <!-- Decryption Pulse Visualization -->
+                <div class="space-y-3">
+                    <div class="flex justify-between text-[10px] font-label text-on-surface-variant uppercase">
+                        <span>Lattice_Collapse</span>
+                        <span>0.00%</span>
+                    </div>
+                    <div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                        <div
+                            class="h-full w-1/3 bg-gradient-to-r from-primary-container to-primary shadow-[0_0_10px_rgba(0,229,255,0.5)]">
+                        </div>
+                    </div>
+                </div>
+                <!-- Plaintext Output Area -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span
+                            class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">PLAINTEXT_OUTPUT_PREVIEW</span>
+                        <span
+                            class="material-symbols-outlined text-sm text-outline-variant cursor-pointer hover:text-primary transition-colors"
+                            data-icon="content_copy">content_copy</span>
+                    </div>
+                    <div class="glass-panel h-64 p-4 rounded overflow-y-auto scrollbar-hide">
+                        <div class="font-mono text-xs text-on-surface-variant space-y-2 opacity-50">
+                            <p>&gt; WAITING_FOR_PAYLOAD...</p>
+                            <p>&gt; AWAITING_QUANTUM_KEY_MATCH...</p>
+                            <p>&gt; SYSTEM_READY_FOR_OBSERVATION</p>
+                            <div class="pt-4 border-t border-outline-variant/10 mt-4">
+                                <div class="grid grid-cols-8 gap-1">
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-primary-container/20 rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                    <div class="h-2 bg-surface-variant rounded-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Entropy Chips -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-surface-container-high p-4 rounded flex items-center justify-between">
+                    <span
+                        class="font-label text-[10px] text-on-surface-variant uppercase tracking-wider">Node_Temp</span>
+                    <span class="font-mono text-sm text-primary-container">2.4K</span>
+                </div>
+                <div class="bg-surface-container-high p-4 rounded flex items-center justify-between">
+                    <span
+                        class="font-label text-[10px] text-on-surface-variant uppercase tracking-wider">Sync_Lag</span>
+                    <span class="font-mono text-sm text-primary-container">0.02ms</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-3 pb-6 px-4 bg-[#10141a]/80 backdrop-blur-xl border-t border-[#3b494c]/15 shadow-[0_-10px_30px_rgba(0,229,255,0.05)] rounded-t-lg">
+        <div
+            class="flex flex-col items-center justify-center text-[#bac9cc] opacity-60 hover:text-[#c3f5ff] transition-all active:scale-90 duration-150">
+            <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+            <span class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase">DASHBOARD</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-[#00E5FF] drop-shadow-[0_0_12px_rgba(0,229,255,0.6)] scale-110 active:scale-90 transition-transform duration-150">
+            <span class="material-symbols-outlined" data-icon="Settings_Ethernet">settings_ethernet</span>
+            <span class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase">DECRYPT</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-[#bac9cc] opacity-60 hover:text-[#c3f5ff] transition-all active:scale-90 duration-150">
+            <span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+            <span class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase">VAULT</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-[#bac9cc] opacity-60 hover:text-[#c3f5ff] transition-all active:scale-90 duration-150">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase">SYSTEM</span>
+        </div>
+    </nav>
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 pointer-events-none -z-10 opacity-20">
+        <div class="absolute top-1/4 -right-24 w-96 h-96 bg-primary-container/10 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-1/4 -left-24 w-96 h-96 bg-secondary-container/10 rounded-full blur-[100px]"></div>
+    </div>
+</body>
+
+</html>
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AEGIS QUANTUM - Biometric Authentication</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#dfb7ff",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#dfb7ff",
+                        "surface-tint": "#00dce5",
+                        "inverse-primary": "#00696e",
+                        "surface-dim": "#0c1324",
+                        "surface-container": "#191f31",
+                        "primary-container": "#00f5ff",
+                        "primary": "#e9feff",
+                        "on-secondary-container": "#f7e6ff",
+                        "surface-container-low": "#151b2d",
+                        "primary-fixed": "#63f7ff",
+                        "secondary-fixed": "#f1daff",
+                        "on-secondary": "#4b007e",
+                        "surface": "#0c1324",
+                        "primary-fixed-dim": "#00dce5",
+                        "on-primary": "#003739",
+                        "on-background": "#dce1fb",
+                        "inverse-on-surface": "#2a3043",
+                        "tertiary-fixed": "#79ff5b",
+                        "tertiary-fixed-dim": "#2ae500",
+                        "on-tertiary-fixed-variant": "#095300",
+                        "on-tertiary": "#053900",
+                        "on-tertiary-container": "#107100",
+                        "surface-container-high": "#23293c",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#022100",
+                        "on-primary-fixed": "#002021",
+                        "on-surface": "#dce1fb",
+                        "surface-container-highest": "#2e3447",
+                        "on-error": "#690005",
+                        "background": "#0c1324",
+                        "tertiary-container": "#3bff17",
+                        "secondary-container": "#9d05ff",
+                        "on-primary-container": "#006c71",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#efffe4",
+                        "surface-container-lowest": "#070d1f",
+                        "outline-variant": "#3a494a",
+                        "surface-bright": "#33394c",
+                        "inverse-surface": "#dce1fb",
+                        "on-secondary-fixed-variant": "#6b00b0",
+                        "on-primary-fixed-variant": "#004f53",
+                        "on-surface-variant": "#b9caca",
+                        "surface-variant": "#2e3447",
+                        "on-secondary-fixed": "#2d004f",
+                        "outline": "#849495"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hex-grid {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l17.32 10v20L20 40 2.68 30V10z' fill='none' stroke='%2300dce5' stroke-width='0.5' stroke-opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .scanning-line {
+            background: linear-gradient(to bottom, transparent, #00dce5, transparent);
+            height: 100px;
+            width: 100%;
+            position: absolute;
+            top: -100px;
+            animation: scan 3s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes scan {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        .pulse-cyan {
+            box-shadow: 0 0 40px rgba(0, 220, 229, 0.1);
+        }
+
+        .pulse-violet {
+            box-shadow: 0 0 40px rgba(223, 183, 255, 0.1);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-background selection:bg-primary-fixed-dim/30 overflow-hidden">
+    <!-- Hex Grid Overlay -->
+    <div class="fixed inset-0 hex-grid pointer-events-none z-0"></div>
+    <!-- Background Light Pulses -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-fixed-dim/5 blur-[120px] rounded-full z-0">
+    </div>
+    <div
+        class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/5 blur-[150px] rounded-full z-0">
+    </div>
+    <!-- Top App Bar -->
+    <header
+        class="fixed top-0 w-full z-50 rounded-none bg-slate-950/80 backdrop-blur-lg shadow-[0_0_20px_rgba(0,220,229,0.05)]">
+        <div class="flex items-center justify-between px-6 h-16 w-full">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-cyan-400" data-icon="shield_lock">shield_lock</span>
+                <span class="text-cyan-400 font-headline font-bold tracking-[0.2em] text-lg uppercase">AEGIS
+                    QUANTUM</span>
+            </div>
+            <div class="flex items-center">
+                <span class="material-symbols-outlined text-cyan-400" data-icon="sensors">sensors</span>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-20">
+        <!-- Status Indicator -->
+        <div
+            class="mb-12 flex items-center gap-2 bg-surface-container-low px-4 py-2 border-b border-outline-variant/20">
+            <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+            <span
+                class="font-headline text-[10px] tracking-[0.2em] text-tertiary-fixed-dim font-bold uppercase">ENCRYPTED
+                HANDSHAKE ACTIVE</span>
+        </div>
+        <!-- Biometric Scanner Area -->
+        <div class="relative w-72 h-72 flex items-center justify-center">
+            <!-- Scanning Animation Container -->
+            <div
+                class="absolute inset-0 bg-surface-container-high rounded-none border border-primary-fixed-dim/10 overflow-hidden pulse-cyan">
+                <div class="scanning-line"></div>
+                <!-- Corner Accents -->
+                <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary-fixed-dim"></div>
+                <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary-fixed-dim"></div>
+                <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary-fixed-dim"></div>
+                <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary-fixed-dim"></div>
+            </div>
+            <!-- Central Icon -->
+            <div class="relative z-20 flex flex-col items-center">
+                <span
+                    class="material-symbols-outlined text-8xl text-primary-fixed-dim drop-shadow-[0_0_15px_rgba(0,220,229,0.4)]"
+                    data-icon="fingerprint" style="font-variation-settings: 'wght' 200;">fingerprint</span>
+            </div>
+        </div>
+        <!-- Verification Text -->
+        <div class="mt-12 text-center">
+            <h1 class="font-headline text-3xl font-bold tracking-[0.15em] text-primary mb-2">VERIFYING...</h1>
+            <p class="font-body text-on-surface-variant text-sm tracking-wide opacity-70">QUANTUM BIOMETRIC
+                IDENTIFICATION IN PROGRESS</p>
+        </div>
+        <!-- Progress Meters (Asymmetric Layout) -->
+        <div class="mt-16 w-full max-w-xs space-y-6">
+            <div class="space-y-2">
+                <div class="flex justify-between items-end">
+                    <span
+                        class="font-headline text-[10px] tracking-[0.1em] text-on-surface-variant">DNA_SEQUENCE_MATCH</span>
+                    <span class="font-headline text-[10px] tracking-[0.1em] text-tertiary-fixed-dim">88.4%</span>
+                </div>
+                <div class="h-[2px] bg-surface-container-highest w-full relative">
+                    <div class="absolute top-0 left-0 h-full bg-tertiary-fixed-dim shadow-[0_0_8px_rgba(42,229,0,0.5)]"
+                        style="width: 88%;"></div>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <div class="flex justify-between items-end">
+                    <span
+                        class="font-headline text-[10px] tracking-[0.1em] text-on-surface-variant">NEURAL_PATTERN_SYNC</span>
+                    <span class="font-headline text-[10px] tracking-[0.1em] text-secondary">CALIBRATING</span>
+                </div>
+                <div class="h-[2px] bg-surface-container-highest w-full relative">
+                    <div class="absolute top-0 left-0 h-full bg-secondary shadow-[0_0_8px_rgba(223,183,255,0.5)]"
+                        style="width: 45%;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Secondary Action -->
+        <div class="mt-auto pt-12">
+            <button
+                class="group flex items-center gap-3 px-8 py-3 bg-transparent hover:bg-surface-container-low transition-all active:scale-95 duration-150">
+                <span class="material-symbols-outlined text-primary-fixed-dim text-lg"
+                    data-icon="vpn_key">vpn_key</span>
+                <span
+                    class="font-headline text-xs tracking-[0.25em] text-primary-fixed-dim font-bold uppercase group-hover:text-cyan-300 transition-colors">ENTER
+                    PIN</span>
+            </button>
+        </div>
+    </main>
+    <!-- Footer Security Meta (Editorial Precision) -->
+    <footer class="fixed bottom-24 w-full px-6 flex justify-between items-center z-10 pointer-events-none">
+        <div class="text-[8px] font-headline text-outline tracking-[0.2em]">
+            NODE: Q-ALPHA-09<br />
+            LATENCY: 1.2MS
+        </div>
+        <div class="text-[8px] font-headline text-outline tracking-[0.2em] text-right">
+            AUTH_TOKEN: 0x88F...29A<br />
+            ENCRYPTION: AES-Q-4096
+        </div>
+    </footer>
+    <!-- Image for Contextual Atmosphere (Hidden but defined for AI generation) -->
+    <div class="hidden">
+        <img alt="Atmosphere"
+            data-alt="ultra-modern server room with glowing blue fiber optic cables, dark obsidian textures, and ethereal purple neon light pulses in a cinematic dark atmosphere"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmv3ezcp3kEr1tfxhti3BzEc_mRrVOYhi1nGjRIfKQP7oB9vxiPHln3JU4UnB_Ulmzle0bBHEHx5W3mh-QsqgrUiWnOGnGZAeyqeWn2OOKPyKvzdjmepKjJl5DXHbjUSzvQJMqQKSkaYGgPm3RtqlF68ZailhtBK7sluVjuEazQZKiDwZRdmouzJImf-CZjRIgU4TWYMBeMXDX0vHGHWNim2OOaqpIeHN5x3yOsbHxVwLspPxGbNi4-gby9lD_2wGsIBp8vp9ao5U" />
+    </div>
+</body>
+
+</html>
